@@ -11,8 +11,8 @@ PM> Install-Package Log4net.Appender.Serilog -pre
 
 You must first call 
 ```csharp
-Log4net.Appender.Serilog.Configuration.Configure();
+Log4net.Appender.Serilog.Configuration.Configure(ILogger logger = null);
 ```
-it will then use the `Log.Logger` to log all log4net message
+If logger is left null, it will use the `Log.Logger`
 
 

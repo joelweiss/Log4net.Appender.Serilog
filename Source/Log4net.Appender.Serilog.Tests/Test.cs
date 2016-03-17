@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 using Serilog.Events;
 using Serilog;
@@ -14,7 +11,7 @@ namespace Log4net.Appender.Serilog.Tests
         [Fact]
         public void TestForwardsToSerilog()
         {
-            Configuration.Configure();
+            Log4net.Appender.Serilog.Configuration.Configure();
             var log = log4net.LogManager.GetLogger("TypeName");
 
             var events = new List<LogEvent>();

@@ -4,6 +4,7 @@ using Serilog.Events;
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
+using Serilog;
 
 namespace Log4net.Appender.Serilog
 {
@@ -11,11 +12,17 @@ namespace Log4net.Appender.Serilog
     {
         private static readonly Func<SystemStringFormat, string> _FormatGetter;
         private static readonly Func<SystemStringFormat, object[]> _ArgumentsGetter;
+        private readonly global::Serilog.ILogger _Logger;
 
         static SerilogAppender()
         {
             _FormatGetter = GetFieldAccessor<SystemStringFormat, string>("m_format");
             _ArgumentsGetter = GetFieldAccessor<SystemStringFormat, object[]>("m_args");
+        }
+
+        public SerilogAppender(global::Serilog.ILogger logger = null)
+        {
+            _Logger = logger ?? global::Serilog.Log.Logger;
         }
 
         protected override void Append(LoggingEvent loggingEvent)
@@ -36,7 +43,7 @@ namespace Log4net.Appender.Serilog
                 template = loggingEvent.MessageObject?.ToString();
             }
 
-            var logger = global::Serilog.Log.Logger.ForContext(global::Serilog.Core.Constants.SourceContextPropertyName, source);
+            var logger = _Logger.ForContext(global::Serilog.Core.Constants.SourceContextPropertyName, source);
             logger.Write(serilogLevel, loggingEvent.ExceptionObject, template, parameters);
         }
 

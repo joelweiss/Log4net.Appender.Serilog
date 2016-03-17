@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+    <metadata>
+        <id>Log4net.Appender.Serilog</id>
+        <version>1.0.0.0-Beta</version>
+        <title>Log4net.Appender.Serilog</title>
+        <authors>Joel Weiss</authors>
+        <licenseUrl>https://github.com/joelweiss/Log4net.Appender.Serilog/blob/master/Licence.txt</licenseUrl>
+        <projectUrl>https://github.com/joelweiss/Log4net.Appender.Serilog</projectUrl>
+        <iconUrl>http://serilog.net/images/serilog-community-nuget.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>log4net appender that sends your log messages to Serilog.</description>
+        <summary>log4net appender that sends your log messages to Serilog.</summary>
+        <tags>log4net serilog logging appender</tags>
+        <dependencies>
+            <dependency id="Serilog" version="1.5.14" />
+            <dependency id="log4net" version="2.0.5" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\Source\Log4net.Appender.Serilog\bin\Release\Log4net.Appender.Serilog.dll" target="lib\net46\Log4net.Appender.Serilog.dll" />
+    </files>
+</package>

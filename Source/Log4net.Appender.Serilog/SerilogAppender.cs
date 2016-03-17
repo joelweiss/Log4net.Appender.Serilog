@@ -22,7 +22,7 @@ namespace Log4net.Appender.Serilog
 
         public SerilogAppender(global::Serilog.ILogger logger = null)
         {
-            _Logger = logger ?? global::Serilog.Log.Logger;
+            _Logger = logger;
         }
 
         protected override void Append(LoggingEvent loggingEvent)
@@ -43,7 +43,7 @@ namespace Log4net.Appender.Serilog
                 template = loggingEvent.MessageObject?.ToString();
             }
 
-            var logger = _Logger.ForContext(global::Serilog.Core.Constants.SourceContextPropertyName, source);
+            var logger = (_Logger ?? global::Serilog.Log.Logger).ForContext(global::Serilog.Core.Constants.SourceContextPropertyName, source);
             logger.Write(serilogLevel, loggingEvent.ExceptionObject, template, parameters);
         }
 

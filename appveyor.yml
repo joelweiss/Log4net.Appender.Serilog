@@ -1,18 +1,29 @@
-version: 1.0.0.{build}
+version: 1.0.{build}-Beta
 configuration: Release
-assembly_info:
+pull_requests:
+  do_not_increment_build_number: true
+image:
+- Visual Studio 2017
+- Ubuntu
+dotnet_csproj:
   patch: true
-  file: AssemblyInfo.*
-  assembly_version: '{version}'
-  assembly_file_version: '{version}'
-  assembly_informational_version: '{version}'
+  file: '**\Log4net.Appender.Serilog.csproj'
+  version: '{version}'
+  package_version: '{version}'
 before_build:
-- ps: nuget restore Source\Log4net.Appender.Serilog\Log4net.Appender.Serilog.sln
+- ps: dotnet restore Source\Log4net.Appender.Serilog.sln
 build:
-  project: Source\Log4net.Appender.Serilog\Log4net.Appender.Serilog.sln
+  project: Source\Log4net.Appender.Serilog.sln
+  publish_nuget: true
   verbosity: minimal
-after_build:
-- ps: >-
-    nuget pack Nuget\Log4net.Appender.Serilog.nuspec -Version $env:APPVEYOR_BUILD_VERSION-Beta
-
-    appveyor PushArtifact Log4net.Appender.Serilog.$env:APPVEYOR_BUILD_VERSION-Beta.nupkg
+test_script:
+- ps: dotnet test Source\Log4net.Appender.Serilog.Tests\Log4net.Appender.Serilog.Tests.csproj
+for:
+-
+  matrix:
+    only:
+      - image: Ubuntu
+  build_script:
+  - ps: dotnet build Source\Log4net.Appender.Serilog\Log4net.Appender.Serilog.csproj --framework netstandard2.0
+  test_script:
+  - ps: dotnet test Source\Log4net.Appender.Serilog.Tests\Log4net.Appender.Serilog.Tests.csproj --framework netcoreapp2.0

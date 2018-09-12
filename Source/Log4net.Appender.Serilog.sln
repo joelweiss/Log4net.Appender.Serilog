@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log4net.Appender.Serilog", "Log4net.Appender.Serilog.csproj", "{7CF3B2D7-5D59-4DCB-89A6-8355AAAFB785}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log4net.Appender.Serilog", "Log4net.Appender.Serilog\Log4net.Appender.Serilog.csproj", "{7CF3B2D7-5D59-4DCB-89A6-8355AAAFB785}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log4net.Appender.Serilog.Tests", "..\Log4net.Appender.Serilog.Tests\Log4net.Appender.Serilog.Tests.csproj", "{0F08642F-CDB9-4737-BB10-6A92B2B32F86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log4net.Appender.Serilog.Tests", "Log4net.Appender.Serilog.Tests\Log4net.Appender.Serilog.Tests.csproj", "{0F08642F-CDB9-4737-BB10-6A92B2B32F86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +24,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {92A03624-D77C-4333-A414-4D70A35F97CD}
 	EndGlobalSection
 EndGlobal

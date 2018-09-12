@@ -10,7 +10,7 @@
         {
             var serilogAppender = new Log4net.Appender.Serilog.SerilogAppender(logger);
             serilogAppender.ActivateOptions();
-            var loggerRepository = (log4net.Repository.Hierarchy.Hierarchy)log4net.LogManager.GetRepository();
+            var loggerRepository = (log4net.Repository.Hierarchy.Hierarchy)log4net.LogManager.GetRepository(System.Reflection.Assembly.GetExecutingAssembly());
             loggerRepository.Root.AddAppender(serilogAppender);
             loggerRepository.Configured = true;
         }

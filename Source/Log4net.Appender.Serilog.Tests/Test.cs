@@ -12,7 +12,7 @@ namespace Log4net.Appender.Serilog.Tests
         public void TestForwardsToSerilog()
         {
             Log4net.Appender.Serilog.Configuration.Configure();
-            var log = log4net.LogManager.GetLogger("TypeName");
+            var log = log4net.LogManager.GetLogger(typeof(Test));
 
             var events = new List<LogEvent>();
             var sink = new DelegatingSink(events.Add);
@@ -36,7 +36,7 @@ namespace Log4net.Appender.Serilog.Tests
 
 
             Assert.Equal(11, events.Count);
-            Assert.Equal(events[1].RenderMessage(), "Debug \"Param0\"");
+            Assert.Equal("Debug \"Param0\"", events[1].RenderMessage());
             Assert.NotNull(events[7].Exception);
         }
     }

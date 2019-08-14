@@ -19,6 +19,7 @@ namespace Log4net.Appender.Serilog
             _FormatGetter = GetFieldAccessor<SystemStringFormat, string>("m_format");
             _ArgumentsGetter = GetFieldAccessor<SystemStringFormat, object[]>("m_args");
         }
+        public SerilogAppender() { }
 
         public SerilogAppender(global::Serilog.ILogger logger = null)
         {

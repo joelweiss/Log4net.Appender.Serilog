@@ -33,8 +33,7 @@ namespace Log4net.Appender.Serilog
             string template = null;
             object[] parameters = null;
 
-            SystemStringFormat systemStringFormat = loggingEvent.MessageObject as SystemStringFormat;
-            if (systemStringFormat != null)
+            if (loggingEvent.MessageObject is SystemStringFormat systemStringFormat)
             {
                 template = _FormatGetter(systemStringFormat);
                 parameters = _ArgumentsGetter(systemStringFormat);
@@ -45,7 +44,9 @@ namespace Log4net.Appender.Serilog
             }
 
             var logger = (_Logger ?? global::Serilog.Log.Logger).ForContext(global::Serilog.Core.Constants.SourceContextPropertyName, source);
+#pragma warning disable Serilog004 // Constant MessageTemplate verifier
             logger.Write(serilogLevel, loggingEvent.ExceptionObject, template, parameters);
+#pragma warning restore Serilog004 // Constant MessageTemplate verifier
         }
 
         static LogEventLevel ConvertLevel(Level log4netLevel)

@@ -8,7 +8,7 @@ Send you log4net messages to serilog
 
 # Installation
 ```
-PM> Install-Package Log4net.Appender.Serilog -pre
+PM> Install-Package Log4net.Appender.Serilog
 ```
 
 # Usage

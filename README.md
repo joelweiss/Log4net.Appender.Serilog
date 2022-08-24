@@ -1,6 +1,5 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/d3rppaail9pcj1go/branch/master?svg=true)](https://ci.appveyor.com/project/joelweiss/log4net-appender-serilog/branch/master)
+[![Build Status](https://github.com/joelweiss/Log4net.Appender.Serilog/actions/workflows/master.yml/badge.svg)](https://github.com/joelweiss/Log4net.Appender.Serilog/actions/workflows/master.yml)
 [![NuGet Badge](https://buildstats.info/nuget/Log4net.Appender.Serilog?includePreReleases=true)](https://www.nuget.org/packages/Log4net.Appender.Serilog/)
-[![Test status](https://img.shields.io/appveyor/tests/JoelWeiss/Log4net-Appender-Serilog.svg)](https://ci.appveyor.com/project/JoelWeiss/Log4net-Appender-Serilog/branch/master)
 
 # Log4net.Appender.Serilog
 

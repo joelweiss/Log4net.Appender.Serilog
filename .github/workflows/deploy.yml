@@ -1,0 +1,25 @@
+name: Publish To Nuget
+
+on:
+  push:
+    tags:
+    - "v[0-9]+.[0-9]+.[0-9]+"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set VERSION variable from tag
+      run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+    - name: Install dependencies
+      run: dotnet restore Source/Log4net.Appender.Serilog.sln
+    - name: Build
+      run: dotnet build Source/Log4net.Appender.Serilog.sln --configuration Release --no-restore /p:Version=${VERSION}
+    - name: Test
+      run: dotnet test Source/Log4net.Appender.Serilog.sln --configuration Release --no-build --verbosity normal --framework net6.0 /p:Version=${VERSION}      
+    - name: Pack
+      run: dotnet pack Source/Log4net.Appender.Serilog.sln --configuration Release /p:Version=${VERSION} --no-build --output .
+    - name: Push
+      run: dotnet nuget push Log4net.Appender.Serilog.${VERSION}.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${{ secrets.NUGET_API_KEY }}
